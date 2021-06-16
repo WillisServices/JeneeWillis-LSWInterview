@@ -1,28 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Willis_Interactions;
 
 namespace Willis_Player
 {
     /// <summary>
-    /// CLASS: PlayerInteraction
+    /// CLASS: PlayerClick
     /// Author: Jenee Willis
     /// Description: Checks where player clicks and whether it is interactable
     /// </summary>
-    internal class PlayerInteraction : MonoBehaviour
+    internal class PlayerClick : MonoBehaviour
     {
         [Header("Script References")]
         [Tooltip("PlayerMovement script")]
-        [SerializeField]
-        private PlayerMovement playerMovementScript;
+        [SerializeField] private PlayerMovement playerMovementScript;
 
         [Header("Interactable Settings")]
         [Tooltip("What players can interact with")]
-        [SerializeField]
-        private LayerMask interactables;
+        [SerializeField] private LayerMask interactableGameobjects;
         [Tooltip("How far character stops from the interactable gameobject")]
-        [SerializeField]
-        private float stopDistance = 2f;
+        [SerializeField] private float stopDistanceFromInteractables = 2f;
 
         private GameObject hitObject;
 
@@ -33,7 +31,7 @@ namespace Willis_Player
             //checks if player has clicked on an interactable object with right mouse button
             if (Input.GetMouseButton(1))
             {
-                RaycastHit2D hit = PlayerClick.GetHit(interactables);
+                RaycastHit2D hit = CheckPlayerClick.GetHit(interactableGameobjects);
 
                 if (hit.collider != null)
                 {
@@ -47,7 +45,7 @@ namespace Willis_Player
             }
 
             //stop player at a certain distance if they clicked on an interactable object
-            if (canInteract)
+            if (canInteract == true)
             {
                 StopPlayerMovement();
             }
@@ -60,9 +58,12 @@ namespace Willis_Player
         private void StopPlayerMovement()
         {
             //check distance between player and the interactable gameobject to see how close they are to each other
-            if (Vector2.Distance(transform.position, hitObject.transform.position) <= stopDistance)
+            if (Vector2.Distance(transform.position, hitObject.transform.position) <= stopDistanceFromInteractables)
             {
                 playerMovementScript.isMoving = false;
+
+                hitObject.GetComponent<Interactable>().PlayerInteract.Invoke();
+
                 canInteract = false;
             }
         }
@@ -73,7 +74,7 @@ namespace Willis_Player
     /// Author: Jenee Willis
     /// Description: Get information about what gameobject the player has clicked on
     /// </summary>
-    internal static class PlayerClick
+    internal static class CheckPlayerClick
     {
         internal static RaycastHit2D GetHit(LayerMask mask)
         {
@@ -81,7 +82,7 @@ namespace Willis_Player
             Vector2 rayOrigin = new Vector2(clickPosition.x, clickPosition.y);
 
             //return clicked gameobject
-            return Physics2D.Raycast(rayOrigin, Vector2.zero, mask);
+            return Physics2D.Raycast(rayOrigin, Vector2.zero, Mathf.Infinity, mask);
         }
     }
 }

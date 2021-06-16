@@ -13,14 +13,12 @@ namespace Willis_Player
     {
         [Header("Movement Settings")]
         [Tooltip("How fast character moves")]
-        [SerializeField]
-        private float movementSpeed = 5f;
+        [SerializeField] private float movementSpeed = 5f;
+
         [Tooltip("Where character can walk")]
-        [SerializeField]
-        private LayerMask walkable;
+        [SerializeField] private LayerMask walkable;
 
         private Vector2 destination;
-
         internal bool isMoving = false;
 
         private void Update()
@@ -29,7 +27,7 @@ namespace Willis_Player
             if (Input.GetMouseButton(1))
             {
                 //check if clicked area is walkable
-                RaycastHit2D hit = PlayerClick.GetHit(walkable);
+                RaycastHit2D hit = CheckPlayerClick.GetHit(walkable);
 
                 if (hit.collider != null)
                 {

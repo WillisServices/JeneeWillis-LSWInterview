@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Willis_Interactions;
 
 namespace Willis_NPC
 {
-    internal abstract class NPC : MonoBehaviour
+    public abstract class NPC : Interactable
     {
         [SerializeField]
-        protected string name;
-
-
+        private string npcName = "";
+        [SerializeField]
+        private List<string> PassbyDialogue = new List<string>();
     }
 }

@@ -4,8 +4,19 @@ using UnityEngine;
 
 namespace Willis_NPC
 {
-    internal class Shopkeeper : NPC
+    public class Shopkeeper : NPC
     {
+        [SerializeField]
+        private GameObject storePanel;
 
+        private void Start()
+        {
+            storePanel.SetActive(false);
+        }
+
+        public void ShowStore()
+        {
+            storePanel.SetActive(true);
+        }
     }
 }
