@@ -4,45 +4,78 @@ using UnityEngine;
 
 namespace Willis_Player
 {
-    public class PlayerMovement : MonoBehaviour
+    /// <summary>
+    /// CLASS: PlayerMovement
+    /// Author: Jenee Willis
+    /// Description: Makes player character move to where the player clicks
+    /// </summary>
+    internal class PlayerMovement : MonoBehaviour
     {
+        [Header("Movement Settings")]
+        [Tooltip("How fast character moves")]
         [SerializeField]
         private float movementSpeed = 5f;
+        [Tooltip("Where character can walk")]
+        [SerializeField]
+        private LayerMask walkable;
 
-        internal Vector2 targetPosition;
+        private Vector2 destination;
 
-        private bool isMoving = false;
+        internal bool isMoving = false;
 
         private void Update()
         {
+            //Move when right mouse button is clicked
             if (Input.GetMouseButton(1))
             {
-                GetTargetPosition();
+                //check if clicked area is walkable
+                RaycastHit2D hit = PlayerClick.GetHit(walkable);
+
+                if (hit.collider != null)
+                {
+                    //get position of where the character has to move to
+                    GetTargetPosition();
+                }
             }
 
+            //Move player when position has been set
             if (isMoving)
             {
                 MovePlayer();
             }
         }
 
+        /// <summary>
+        /// METHOD: GetTargetPosition()
+        /// Desscription: Get world position of where the player clicks
+        /// </summary> 
         private void GetTargetPosition()
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             isMoving = true;
         }
 
+        /// <summary>
+        /// METHOD: GetTargetPosition()
+        /// Desscription: Move player towards target position until they reach there
+        /// </summary> 
         private void MovePlayer()
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, destination, movementSpeed * Time.deltaTime);
 
-            if (ConvertToVector2(transform.position) == targetPosition)
+            //check if player has reached destination
+            if (ConvertToVector2(transform.position) == destination)
             {
+                //stop moving if reached
                 isMoving = false;
             }
         }
 
+        /// <summary>
+        /// METHOD: ConvertToVector2()
+        /// Desscription: convert vector3 into vector2
+        /// </summary> 
         private Vector2 ConvertToVector2(Vector3 vector3)
         {
             return (new Vector2(vector3.x, vector3.y));
