@@ -68,7 +68,7 @@ namespace Willis_Shop
         {
             foreach (Transform child in cartScrollView)
             {
-                
+                Destroy(child.gameObject);
             }
 
             totalCost = 0;

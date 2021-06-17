@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Willis_Animation;
 
 namespace Willis_Player
 {
@@ -14,17 +15,20 @@ namespace Willis_Player
         [Header("Movement Settings")]
         [Tooltip("How fast character moves")]
         [SerializeField] private float movementSpeed = 5f;
-
         [Tooltip("Where character can walk")]
         [SerializeField] private LayerMask walkable;
 
+        [SerializeField] internal Animator playerAnimator;
+
+        private PlayerAnimation anim;
         private PlayerInformation playerInfoScript;
 
-        private Vector2 destination;
+        internal Vector2 destination;
         private bool isMoving = false;
 
         private void Start()
         {
+            anim = GetComponent<PlayerAnimation>();
             playerInfoScript = GetComponent<PlayerInformation>();
         }
 
@@ -50,12 +54,11 @@ namespace Willis_Player
             }
 
             //Move player when position has been set
+
             if (isMoving == true)
             {
-                if (playerInfoScript.canMove == true)
-                {
-                    MovePlayer();
-                }
+                playerAnimator.SetBool("isWalking", isMoving);
+                MovePlayer();
             }
         }
 
@@ -67,7 +70,11 @@ namespace Willis_Player
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            isMoving = true;
+            if (playerInfoScript.canMove == true)
+            {
+                playerAnimator = anim.GetAnimator(ConvertToVector2(transform.position), destination);
+                isMoving = true;
+            }
         }
 
         /// <summary>
@@ -83,6 +90,7 @@ namespace Willis_Player
             {
                 //stop moving if reached
                 isMoving = false;
+                playerAnimator.SetBool("isWalking", isMoving);
             }
         }
 
@@ -90,7 +98,7 @@ namespace Willis_Player
         /// METHOD: ConvertToVector2()
         /// Desscription: convert vector3 into vector2
         /// </summary> 
-        private Vector2 ConvertToVector2(Vector3 vector3)
+        internal Vector2 ConvertToVector2(Vector3 vector3)
         {
             return (new Vector2(vector3.x, vector3.y));
         }

@@ -17,7 +17,6 @@ namespace Willis_Player
         [SerializeField] internal Transform inventorySlot;
 
         internal bool canMove = true;
-        //internal List<ShopItems> inventoryItems = new List<ShopItems>();
 
         private void Start()
         {
