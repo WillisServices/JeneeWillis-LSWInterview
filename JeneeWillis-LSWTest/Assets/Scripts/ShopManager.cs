@@ -29,13 +29,17 @@ namespace Willis_Shop
 
         private void Start()
         {
+            SpawnShopItems(); 
+        }
+
+        private void OnEnable()
+        {
             startBalance = playerInfoScript.goldAmount;
             newBalance = startBalance;
 
             UpdateGoldText();
 
             numberOfItems = shopItemsList.Count;
-            SpawnShopItems();
         }
 
         private void SpawnShopItems()
@@ -60,21 +64,17 @@ namespace Willis_Shop
             newBalanceCostText.text = "New Balance: " + newBalance.ToString();
         }
 
-        private void ClearCart()
+        public void ConfirmButton()
         {
             foreach (Transform child in cartScrollView)
             {
-                child.gameObject.transform.SetParent(playerInfoScript.inventorySlot);
+                
             }
 
-            cartItems.Clear();
+            totalCost = 0;
+            playerInfoScript.UpdateGold(newBalance);
+            playerInfoScript.canMove = true;
             gameObject.SetActive(false);
-        }
-
-        public void ConfirmButton()
-        {
-            playerInfoScript.inventoryItems.AddRange(cartItems);
-            ClearCart();
         }
     }
 }

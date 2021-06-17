@@ -14,7 +14,7 @@ namespace Willis_Player
     {
         [Header("Script References")]
         [Tooltip("PlayerMovement script")]
-        [SerializeField] private PlayerMovement playerMovementScript;
+        [SerializeField] private PlayerInformation playerInfoScript;
 
         [Header("Interactable Settings")]
         [Tooltip("What players can interact with")]
@@ -59,12 +59,17 @@ namespace Willis_Player
             //check distance between player and the interactable gameobject to see how close they are to each other
             if (Vector2.Distance(transform.position, hitObject.transform.position) <= stopDistanceFromInteractables)
             {
-                playerMovementScript.isMoving = false;
+                playerInfoScript.canMove = false;
 
                 hitObject.GetComponent<Interactable>().PlayerInteract.Invoke();
 
                 canInteract = false;
             }
+            else
+            {
+                playerInfoScript.canMove = true;
+            }
+
         }
     }
 

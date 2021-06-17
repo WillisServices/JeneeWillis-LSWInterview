@@ -15,10 +15,18 @@ namespace Willis_Player
         [SerializeField] private Text goldText;
 
         [SerializeField] internal Transform inventorySlot;
-        internal List<ShopItems> inventoryItems = new List<ShopItems>();
+
+        internal bool canMove = true;
+        //internal List<ShopItems> inventoryItems = new List<ShopItems>();
 
         private void Start()
         {
+            goldText.text = goldAmount.ToString();
+        }
+
+        internal void UpdateGold(int newAmount)
+        {
+            goldAmount = newAmount;
             goldText.text = goldAmount.ToString();
         }
     }

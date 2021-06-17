@@ -18,11 +18,24 @@ namespace Willis_Player
         [Tooltip("Where character can walk")]
         [SerializeField] private LayerMask walkable;
 
+        private PlayerInformation playerInfoScript;
+
         private Vector2 destination;
-        internal bool isMoving = false;
+        private bool isMoving = false;
+
+        private void Start()
+        {
+            playerInfoScript = GetComponent<PlayerInformation>();
+        }
 
         private void Update()
         {
+            //resets player destination
+            if (playerInfoScript.canMove == false)
+            {
+                destination = transform.position;
+            }
+
             //Move when right mouse button is clicked
             if (Input.GetMouseButton(1))
             {
@@ -37,9 +50,12 @@ namespace Willis_Player
             }
 
             //Move player when position has been set
-            if (isMoving)
+            if (isMoving == true)
             {
-                MovePlayer();
+                if (playerInfoScript.canMove == true)
+                {
+                    MovePlayer();
+                }
             }
         }
 
