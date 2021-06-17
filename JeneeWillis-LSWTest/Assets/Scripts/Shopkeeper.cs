@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Willis_NPC
 {
+    /// <summary>
+    /// CLASS: NPC
+    /// Author: Jenee Willis
+    /// Description: Information about shopkeepers
+    /// </summary>
     public class Shopkeeper : NPC
     {
         [SerializeField]
@@ -14,6 +19,7 @@ namespace Willis_NPC
             storePanel.SetActive(false);
         }
 
+        //Show store when character is clicked on
         public void ShowStore()
         {
             storePanel.SetActive(true);

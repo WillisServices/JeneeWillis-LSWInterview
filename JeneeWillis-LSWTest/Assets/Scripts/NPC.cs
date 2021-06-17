@@ -5,6 +5,11 @@ using Willis_Interactions;
 
 namespace Willis_NPC
 {
+    /// <summary>
+    /// CLASS: NPC
+    /// Author: Jenee Willis
+    /// Description: Information about non-player characters
+    /// </summary>
     public abstract class NPC : Interactable
     {
         [SerializeField]
