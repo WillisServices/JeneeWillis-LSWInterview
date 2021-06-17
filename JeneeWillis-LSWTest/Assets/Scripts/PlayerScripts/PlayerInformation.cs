@@ -14,6 +14,7 @@ namespace Willis_Player
         [Header("UI Component References")]
         [SerializeField] private Text goldText;
 
+        [SerializeField] internal GameObject inventoryItem;
         [SerializeField] internal Transform inventorySlot;
 
         internal bool canMove = true;
@@ -28,5 +29,6 @@ namespace Willis_Player
             goldAmount = newAmount;
             goldText.text = goldAmount.ToString();
         }
+
     }
 }

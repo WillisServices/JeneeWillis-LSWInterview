@@ -30,6 +30,7 @@ namespace Willis_Shop
             if (shopManagerScript.shopItemsList[index].itemCost <= shopManagerScript.newBalance)
             {
                 item = Instantiate(addedItemPanel, scrollView);
+                item.transform.SetAsFirstSibling();
                 item.GetComponent<RemoveItemFromCart>().cartItem = this.gameObject;
                 item.GetComponent<RemoveItemFromCart>().shopManagerScript = shopManagerScript;
                 item.transform.GetChild(0).GetComponent<Image>().sprite = shopManagerScript.shopItemsList[index].itemImage;
@@ -39,7 +40,7 @@ namespace Willis_Shop
 
                 shopManagerScript.cartItems.Add(shopManagerScript.shopItemsList[index]);
 
-                shopManagerScript.UpdateGoldText();
+                shopManagerScript.UpdateCosts();
 
                 gameObject.SetActive(false);
             }

@@ -8,6 +8,7 @@ namespace Willis_Shop
     internal class ShopItems
     {
         internal int itemID;
+        internal Categories itemCategory;
         internal int itemSellPrice;
         internal bool isEquipped;
 

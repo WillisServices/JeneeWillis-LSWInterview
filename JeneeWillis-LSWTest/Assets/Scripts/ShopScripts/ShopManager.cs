@@ -13,6 +13,7 @@ namespace Willis_Shop
         [SerializeField] private Transform shopScrollView;
         [SerializeField] private Transform cartScrollView;
 
+        [SerializeField] private Categories shopCategory;
         [SerializeField] private Text totalCostText;
         [SerializeField] private Text newBalanceCostText ;
 
@@ -37,7 +38,7 @@ namespace Willis_Shop
             startBalance = playerInfoScript.goldAmount;
             newBalance = startBalance;
 
-            UpdateGoldText();
+            UpdateCosts();
 
             numberOfItems = shopItemsList.Count;
         }
@@ -53,12 +54,13 @@ namespace Willis_Shop
                 item.transform.GetChild(1).GetComponent<Text>().text = shopItemsList[i].itemCost.ToString();
                 shopItemsList[i].itemSellPrice = Mathf.RoundToInt(0.7f * shopItemsList[i].itemCost); //70% of original price
                 shopItemsList[i].itemID = i;
+                shopItemsList[i].itemCategory = shopCategory;
             }
 
             Destroy(ItemButton);
         }
 
-        internal void UpdateGoldText()
+        internal void UpdateCosts()
         {
             totalCostText.text = "Total Costs: " + totalCost.ToString();
             newBalanceCostText.text = "New Balance: " + newBalance.ToString();
@@ -71,10 +73,28 @@ namespace Willis_Shop
                 Destroy(child.gameObject);
             }
 
+            AddToInventory(playerInfoScript.inventoryItem, playerInfoScript.inventorySlot);
+
+            cartItems.Clear();
             totalCost = 0;
             playerInfoScript.UpdateGold(newBalance);
             playerInfoScript.canMove = true;
             gameObject.SetActive(false);
+        }
+
+        private void AddToInventory(GameObject inventoryItem, Transform slot)
+        {
+            for (int i = 0; i < cartItems.Count; i++)
+            {
+                item = Instantiate(inventoryItem, slot);
+                item.transform.SetAsFirstSibling();
+                item.transform.GetChild(0).GetComponent<Image>().sprite = cartItems[i].itemImage;
+            }
+        }
+
+        private void AddToShop()
+        {
+
         }
     }
 }

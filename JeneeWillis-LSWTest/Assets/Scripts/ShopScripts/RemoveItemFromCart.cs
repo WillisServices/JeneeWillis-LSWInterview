@@ -24,7 +24,7 @@ namespace Willis_Shop
 
             shopManagerScript.totalCost -= shopManagerScript.shopItemsList[index].itemCost;
             shopManagerScript.newBalance += shopManagerScript.shopItemsList[index].itemCost;
-            shopManagerScript.UpdateGoldText();
+            shopManagerScript.UpdateCosts();
 
             foreach (ShopItems item in shopManagerScript.cartItems)
             {

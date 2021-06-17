@@ -18,9 +18,10 @@ namespace Willis_Player
         [Tooltip("Where character can walk")]
         [SerializeField] private LayerMask walkable;
 
+        [Header("Animation Settings")]
         [SerializeField] internal Animator playerAnimator;
 
-        private PlayerAnimation anim;
+        private PlayerAnimation myAnimation;
         private PlayerInformation playerInfoScript;
 
         internal Vector2 destination;
@@ -28,7 +29,7 @@ namespace Willis_Player
 
         private void Start()
         {
-            anim = GetComponent<PlayerAnimation>();
+            myAnimation = GetComponent<PlayerAnimation>();
             playerInfoScript = GetComponent<PlayerInformation>();
         }
 
@@ -57,7 +58,7 @@ namespace Willis_Player
 
             if (isMoving == true)
             {
-                playerAnimator.SetBool("isWalking", isMoving);
+                playerAnimator.SetBool("isWalking", isMoving); //play walk animation
                 MovePlayer();
             }
         }
@@ -72,7 +73,7 @@ namespace Willis_Player
 
             if (playerInfoScript.canMove == true)
             {
-                playerAnimator = anim.GetAnimator(ConvertToVector2(transform.position), destination);
+                playerAnimator = myAnimation.GetAnimator(ConvertToVector2(transform.position), destination);
                 isMoving = true;
             }
         }
@@ -90,7 +91,7 @@ namespace Willis_Player
             {
                 //stop moving if reached
                 isMoving = false;
-                playerAnimator.SetBool("isWalking", isMoving);
+                playerAnimator.SetBool("isWalking", isMoving);//play idle animation
             }
         }
 
