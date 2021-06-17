@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 7007418618745409342}
   - component: {fileID: 7007418618745409337}
   - component: {fileID: 7007418618745409336}
+  - component: {fileID: 275069606}
   m_Layer: 5
   m_Name: ShopItem
   m_TagString: Untagged
@@ -197,6 +198,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &275069606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007418618745409338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb8bc491b4d000409e9ac42506a31a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopManagerScript: {fileID: 0}
+  playerStatsScript: {fileID: 0}
+  clickedButton: {fileID: 7007418618745409336}
+  scrollView: {fileID: 0}
+  addedItemPanel: {fileID: 3672935862214291989, guid: 70c2a5443901b4d4eaf42e29f9161ba1, type: 3}
 --- !u!1 &7007418618805664495
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +293,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 250
+  m_Text: 1000
 --- !u!1 &7007418618860129419
 GameObject:
   m_ObjectHideFlags: 0

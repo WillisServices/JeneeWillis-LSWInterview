@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Events; //added
 
 namespace Willis_Interactions
 {
@@ -12,7 +12,7 @@ namespace Willis_Interactions
     /// </summary>
     public abstract class Interactable : MonoBehaviour
     {
-        [SerializeField]
-        internal UnityEvent PlayerInteract;
+        [Header("Interaction Event")]
+        [SerializeField] internal UnityEvent PlayerInteract;
     }
 }

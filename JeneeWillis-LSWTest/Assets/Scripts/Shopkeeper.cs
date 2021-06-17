@@ -11,8 +11,8 @@ namespace Willis_NPC
     /// </summary>
     public class Shopkeeper : NPC
     {
-        [SerializeField]
-        private GameObject storePanel;
+        [Header("Shopkeeper Information")]
+        [SerializeField] private GameObject storePanel;
 
         private void Start()
         {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Willis_Interactions;
+using Willis_Interactions; //added
 
 namespace Willis_Player
 {
@@ -23,7 +23,6 @@ namespace Willis_Player
         [SerializeField] private float stopDistanceFromInteractables = 2f;
 
         private GameObject hitObject;
-
         private bool canInteract = false;
 
         private void Update()

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Willis_Interactions;
+using Willis_Interactions; //added
 
 namespace Willis_NPC
 {
@@ -12,9 +12,10 @@ namespace Willis_NPC
     /// </summary>
     public abstract class NPC : Interactable
     {
-        [SerializeField]
-        private string npcName = "";
-        [SerializeField]
-        private List<string> PassbyDialogue = new List<string>();
+        [Header("NPC General Information")]
+        [SerializeField] private string npcName = "";
+
+        [Header("NPC Dialogue")]
+        [SerializeField] private List<string> PassbyDialogue = new List<string>();
     }
 }
