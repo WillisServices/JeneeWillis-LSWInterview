@@ -5,12 +5,13 @@ using UnityEngine.UI; //added
 
 namespace Willis_Shop
 {
-    public class RemoveItemFromCart : MonoBehaviour
+    public class RemoveItemFromSelling : MonoBehaviour
     {
         [SerializeField] private Button clickedButton;
         internal ShopManager shopManagerScript;
+        internal SellManager sellManagerScript;
 
-        internal GameObject cartItem;
+        internal GameObject sellCartItem;
 
         private void OnEnable()
         {
@@ -19,22 +20,22 @@ namespace Willis_Shop
 
         private void RemoveFromBuyCart()
         {
-            int index = cartItem.transform.GetSiblingIndex();
+            int index = sellCartItem.transform.GetSiblingIndex();
 
-            shopManagerScript.totalBuyCost -= shopManagerScript.shopItemsList[index].itemCost;
-            shopManagerScript.totalTransaction += shopManagerScript.shopItemsList[index].itemCost;
+            shopManagerScript.totalSellCost -= sellManagerScript.sellItemsList[index].itemSellPrice;
+            shopManagerScript.totalTransaction -= sellManagerScript.sellItemsList[index].itemSellPrice;
             shopManagerScript.UpdateCosts();
 
-            foreach (ShopItems item in shopManagerScript.cartItems)
+            foreach (ShopItems item in shopManagerScript.sellCartItems)
             {
-                if (item.itemID == shopManagerScript.shopItemsList[index].itemID)
+                if (item.itemID == sellManagerScript.sellItemsList[index].itemID)
                 {
-                    shopManagerScript.cartItems.Remove(item);
+                    shopManagerScript.sellCartItems.Remove(item);
                     break;
                 }
             }
 
-            cartItem.SetActive(true);
+            sellCartItem.SetActive(true);
             Destroy(gameObject);
         }
 
@@ -44,3 +45,4 @@ namespace Willis_Shop
         }
     }
 }
+

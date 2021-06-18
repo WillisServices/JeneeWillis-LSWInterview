@@ -14,13 +14,16 @@ namespace Willis_Shop
         [SerializeField] private Transform shopScrollView;
         [SerializeField] private Transform cartScrollView;
 
-        [SerializeField] private Text totalCostText;
-        [SerializeField] private Text totalTransactionText ;
+        [SerializeField] private Text totalBuyCostText;
+        [SerializeField] private Text totalSellCostText;
+        [SerializeField] private Text totalTransactionText;
 
         internal List<ShopItems> cartItems = new List<ShopItems>();
+        internal List<ShopItems> sellCartItems = new List<ShopItems>();
 
         internal int startBalance;
-        internal int totalCost = 0;
+        internal int totalBuyCost = 0;
+        internal int totalSellCost = 0;
         internal int totalTransaction = 0;
 
         private int numberOfItems;
@@ -57,7 +60,8 @@ namespace Willis_Shop
 
         internal void UpdateCosts()
         {
-            totalCostText.text = (totalCost * -1).ToString(); 
+            totalSellCostText.text = (totalSellCost * -1).ToString();
+            totalBuyCostText.text = (totalBuyCost * -1).ToString(); 
             totalTransactionText.text = totalTransaction.ToString();
         }
 
@@ -71,8 +75,13 @@ namespace Willis_Shop
             AddToInventory(playerInfoScript.inventoryPanel, playerInfoScript.inventorySlot);
 
             cartItems.Clear();
-            totalCost = 0;
+
             playerInfoScript.UpdatePlayerGold((totalTransaction * -1));
+
+            totalSellCost = 0;
+            totalBuyCost = 0;
+            totalTransaction = 0;
+
             playerInfoScript.canMove = true;
             gameObject.transform.parent.gameObject.SetActive(false);
         }
@@ -89,6 +98,16 @@ namespace Willis_Shop
 
                 playerInfoScript.inventoryItems.Add(cartItems[i]);
             }
+        }
+
+        private void RemoveFromInventory()
+        {
+
+        }
+
+        private void AddToShop()
+        {
+
         }
 
     }

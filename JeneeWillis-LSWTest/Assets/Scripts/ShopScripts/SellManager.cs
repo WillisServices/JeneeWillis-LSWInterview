@@ -4,30 +4,43 @@ using UnityEngine;
 using UnityEngine.UI; //added
 using Willis_Player; //added
 
-public class SellManager : MonoBehaviour
+namespace Willis_Shop
 {
-    [SerializeField] PlayerInformation playerInfoScript;
-
-    [SerializeField] private Transform inventoryScrollbar;
-    [SerializeField] private Transform sellingScrollView;
-
-    private void Start()
+    public class SellManager : MonoBehaviour
     {
-        SpawnInventoryItemsToSell();
-    }
+        [SerializeField] PlayerInformation playerInfoScript;
 
-    private void SpawnInventoryItemsToSell()
-    {
-        GameObject ItemButton = inventoryScrollbar.GetChild(0).gameObject;
+        [SerializeField] private Transform inventoryScrollbar;
+        [SerializeField] private Transform sellingScrollView;
 
-        for (int i = 0; i < playerInfoScript.inventoryItems.Count; i++)
+        internal List<ShopItems> sellItemsList = new List<ShopItems>();
+
+        private GameObject ItemButton;
+
+        private void OnEnable()
         {
-            GameObject item = Instantiate(ItemButton, inventoryScrollbar);
-
-            item.transform.GetChild(0).GetComponent<Image>().sprite = playerInfoScript.inventoryItems[i].equipInformation[i].itemImage;
-            item.transform.GetChild(1).GetComponent<Text>().text = playerInfoScript.inventoryItems[i].itemSellPrice.ToString();
+            ItemButton = inventoryScrollbar.GetChild(0).gameObject;
+            ItemButton.SetActive(true);
+            SpawnInventoryItemsToSell();
         }
 
-        Destroy(ItemButton);
+        private void SpawnInventoryItemsToSell()
+        {
+            for (int i = 0; i < playerInfoScript.inventoryItems.Count; i++)
+            {
+                GameObject item = Instantiate(ItemButton, inventoryScrollbar);
+
+                item.transform.GetChild(0).GetComponent<Image>().sprite = playerInfoScript.inventoryItems[i].equipInformation[i].itemImage;
+                item.transform.GetChild(1).GetComponent<Text>().text = playerInfoScript.inventoryItems[i].itemSellPrice.ToString();
+                sellItemsList.Add(playerInfoScript.inventoryItems[i]);
+            }
+
+            ItemButton.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
+            sellItemsList.Clear();
+        }
     }
 }

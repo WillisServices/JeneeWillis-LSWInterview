@@ -34,7 +34,7 @@ namespace Willis_Shop
                 item.GetComponent<RemoveItemFromCart>().cartItem = this.gameObject;
                 item.GetComponent<RemoveItemFromCart>().shopManagerScript = shopManagerScript;
 
-                shopManagerScript.totalCost += shopManagerScript.shopItemsList[index].itemCost;
+                shopManagerScript.totalBuyCost += shopManagerScript.shopItemsList[index].itemCost;
                 shopManagerScript.totalTransaction -= shopManagerScript.shopItemsList[index].itemCost;
 
                 shopManagerScript.shopItemsList[index].canSell = true;
