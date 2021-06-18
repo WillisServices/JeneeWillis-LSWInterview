@@ -16,28 +16,28 @@ namespace Willis_Shop
 
         [SerializeField] private GameObject addedItemPanel;
 
-        private GameObject item;
-
         private void OnEnable()
         {
-            clickedButton.onClick.AddListener(() => AddItem(clickedButton.transform, scrollView));
+            clickedButton.onClick.AddListener(() => AddToBuyCart(clickedButton.transform, scrollView));
         }
 
-        public void AddItem(Transform buttonTransform, Transform scrollView)
+        public void AddToBuyCart(Transform buttonTransform, Transform scrollView)
         {
             int index = buttonTransform.GetSiblingIndex();
 
-            if (shopManagerScript.shopItemsList[index].itemCost <= shopManagerScript.newBalance)
+            if ((shopManagerScript.shopItemsList[index].itemCost + shopManagerScript.totalTransaction) <= shopManagerScript.startBalance)
             {
-                item = Instantiate(addedItemPanel, scrollView);
+                GameObject item = Instantiate(addedItemPanel, scrollView);
                 item.transform.SetAsFirstSibling();
+                item.transform.GetChild(0).GetComponent<Image>().sprite = shopManagerScript.shopItemsList[index].equipInformation[0].itemImage;
+
                 item.GetComponent<RemoveItemFromCart>().cartItem = this.gameObject;
                 item.GetComponent<RemoveItemFromCart>().shopManagerScript = shopManagerScript;
-                item.transform.GetChild(0).GetComponent<Image>().sprite = shopManagerScript.shopItemsList[index].itemImage;
 
                 shopManagerScript.totalCost += shopManagerScript.shopItemsList[index].itemCost;
-                shopManagerScript.newBalance -= shopManagerScript.shopItemsList[index].itemCost;
+                shopManagerScript.totalTransaction -= shopManagerScript.shopItemsList[index].itemCost;
 
+                shopManagerScript.shopItemsList[index].canSell = true;
                 shopManagerScript.cartItems.Add(shopManagerScript.shopItemsList[index]);
 
                 shopManagerScript.UpdateCosts();

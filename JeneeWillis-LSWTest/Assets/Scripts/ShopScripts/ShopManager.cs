@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //added
-using Willis_Player;
+using Willis_Player; //added
+using Willis_Inventory; //added
 
 namespace Willis_Shop
 {
@@ -13,20 +14,16 @@ namespace Willis_Shop
         [SerializeField] private Transform shopScrollView;
         [SerializeField] private Transform cartScrollView;
 
-        [SerializeField] private Categories shopCategory;
         [SerializeField] private Text totalCostText;
-        [SerializeField] private Text newBalanceCostText ;
+        [SerializeField] private Text totalTransactionText ;
 
         internal List<ShopItems> cartItems = new List<ShopItems>();
 
         internal int startBalance;
         internal int totalCost = 0;
-        internal int newBalance = 0;
+        internal int totalTransaction = 0;
 
-        private GameObject ItemButton;
         private int numberOfItems;
-
-        private GameObject item;
 
         private void Start()
         {
@@ -36,7 +33,6 @@ namespace Willis_Shop
         private void OnEnable()
         {
             startBalance = playerInfoScript.goldAmount;
-            newBalance = startBalance;
 
             UpdateCosts();
 
@@ -45,16 +41,15 @@ namespace Willis_Shop
 
         private void SpawnShopItems()
         {
-            ItemButton = shopScrollView.GetChild(0).gameObject;
+            GameObject ItemButton = shopScrollView.GetChild(0).gameObject;
 
             for (int i = 0; i < numberOfItems; i++)
             {
-                item = Instantiate(ItemButton, shopScrollView);
-                item.transform.GetChild(0).GetComponent<Image>().sprite = shopItemsList[i].itemImage;
+                GameObject item = Instantiate(ItemButton, shopScrollView);
+                item.transform.GetChild(0).GetComponent<Image>().sprite = shopItemsList[i].equipInformation[0].itemImage;
                 item.transform.GetChild(1).GetComponent<Text>().text = shopItemsList[i].itemCost.ToString();
                 shopItemsList[i].itemSellPrice = Mathf.RoundToInt(0.7f * shopItemsList[i].itemCost); //70% of original price
                 shopItemsList[i].itemID = i;
-                shopItemsList[i].itemCategory = shopCategory;
             }
 
             Destroy(ItemButton);
@@ -62,8 +57,8 @@ namespace Willis_Shop
 
         internal void UpdateCosts()
         {
-            totalCostText.text = "Total Costs: " + totalCost.ToString();
-            newBalanceCostText.text = "New Balance: " + newBalance.ToString();
+            totalCostText.text = (totalCost * -1).ToString(); 
+            totalTransactionText.text = totalTransaction.ToString();
         }
 
         public void ConfirmButton()
@@ -73,28 +68,28 @@ namespace Willis_Shop
                 Destroy(child.gameObject);
             }
 
-            AddToInventory(playerInfoScript.inventoryItem, playerInfoScript.inventorySlot);
+            AddToInventory(playerInfoScript.inventoryPanel, playerInfoScript.inventorySlot);
 
             cartItems.Clear();
             totalCost = 0;
-            playerInfoScript.UpdateGold(newBalance);
+            playerInfoScript.UpdatePlayerGold((totalTransaction * -1));
             playerInfoScript.canMove = true;
-            gameObject.SetActive(false);
+            gameObject.transform.parent.gameObject.SetActive(false);
         }
 
         private void AddToInventory(GameObject inventoryItem, Transform slot)
         {
             for (int i = 0; i < cartItems.Count; i++)
             {
-                item = Instantiate(inventoryItem, slot);
+                GameObject item = Instantiate(inventoryItem, slot);
                 item.transform.SetAsFirstSibling();
-                item.transform.GetChild(0).GetComponent<Image>().sprite = cartItems[i].itemImage;
+                item.transform.GetChild(0).GetComponent<Image>().sprite = cartItems[i].equipInformation[0].itemImage;
+
+                item.GetComponent<EquipItems>().equipInformation = cartItems[i].equipInformation;
+
+                playerInfoScript.inventoryItems.Add(cartItems[i]);
             }
         }
 
-        private void AddToShop()
-        {
-
-        }
     }
 }

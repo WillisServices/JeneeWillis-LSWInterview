@@ -13,7 +13,6 @@ namespace Willis_Player
     internal class PlayerClick : MonoBehaviour
     {
         [Header("Script References")]
-        [Tooltip("PlayerMovement script")]
         [SerializeField] private PlayerInformation playerInfoScript;
 
         [Header("Interactable Settings")]

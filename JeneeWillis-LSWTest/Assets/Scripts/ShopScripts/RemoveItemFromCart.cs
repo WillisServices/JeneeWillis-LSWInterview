@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //added
-using System.Linq;
 
 namespace Willis_Shop
 {
@@ -15,15 +14,15 @@ namespace Willis_Shop
 
         private void OnEnable()
         {
-            clickedButton.onClick.AddListener(() => RemoveItem());
+            clickedButton.onClick.AddListener(() => RemoveFromBuyCart());
         }
 
-        private void RemoveItem()
+        private void RemoveFromBuyCart()
         {
             int index = cartItem.transform.GetSiblingIndex();
 
             shopManagerScript.totalCost -= shopManagerScript.shopItemsList[index].itemCost;
-            shopManagerScript.newBalance += shopManagerScript.shopItemsList[index].itemCost;
+            shopManagerScript.totalTransaction += shopManagerScript.shopItemsList[index].itemCost;
             shopManagerScript.UpdateCosts();
 
             foreach (ShopItems item in shopManagerScript.cartItems)
