@@ -26,11 +26,11 @@ namespace Willis_Shop
             shopManagerScript.totalTransaction -= sellManagerScript.sellItemsList[index].itemSellPrice;
             shopManagerScript.UpdateCosts();
 
-            foreach (ShopItems item in shopManagerScript.sellCartItems)
+            foreach (ShopItems item in sellManagerScript.sellCartItems)
             {
                 if (item.itemID == sellManagerScript.sellItemsList[index].itemID)
                 {
-                    shopManagerScript.sellCartItems.Remove(item);
+                    sellManagerScript.sellCartItems.Remove(item);
                     break;
                 }
             }

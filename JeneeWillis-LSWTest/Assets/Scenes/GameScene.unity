@@ -1281,6 +1281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInfoScript: {fileID: 1107270087}
+  shopManagerScript: {fileID: 705595016}
   inventoryScrollbar: {fileID: 2054427157}
   sellingScrollView: {fileID: 978646890}
 --- !u!114 &636377661
@@ -1564,7 +1565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 179.1, y: -3.5}
+  m_AnchoredPosition: {x: 179.09961, y: -3.5}
   m_SizeDelta: {x: 320, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705595014
@@ -1737,6 +1738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9150677439785618748, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1783,19 +1788,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 143.8
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -48.55
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 93.4
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 97.1
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1803,7 +1808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1811,7 +1816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_Pivot.x
@@ -2773,7 +2778,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 705595016}
         m_TargetAssemblyTypeName: Willis_Shop.ShopManager, Assembly-CSharp
-        m_MethodName: ConfirmButton
+        m_MethodName: ConfirmBuyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 636377660}
+        m_TargetAssemblyTypeName: Willis_Shop.SellManager, Assembly-CSharp
+        m_MethodName: ConfirmSellButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3839,6 +3856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryItem
       objectReference: {fileID: 0}
+    - target: {fileID: 9150677439785618748, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3885,19 +3906,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 46.7
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -48.55
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 93.4
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 97.1
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3905,7 +3926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3913,7 +3934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9150677439785618749, guid: b1bd1204e14ed7246b054df1428c7b74, type: 3}
       propertyPath: m_Pivot.x
@@ -4383,7 +4404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63.420044, y: -538}
+  m_AnchoredPosition: {x: 63.41992, y: -538}
   m_SizeDelta: {x: 74.97424, y: 70.1172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055505493

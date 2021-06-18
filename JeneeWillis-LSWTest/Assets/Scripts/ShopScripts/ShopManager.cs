@@ -11,7 +11,7 @@ namespace Willis_Shop
     {
         [SerializeField] PlayerInformation playerInfoScript;
         [SerializeField] internal List<ShopItems> shopItemsList = new List<ShopItems>();
-        [SerializeField] private Transform shopScrollView;
+        [SerializeField] internal Transform shopScrollView;
         [SerializeField] private Transform cartScrollView;
 
         [SerializeField] private Text totalBuyCostText;
@@ -19,7 +19,6 @@ namespace Willis_Shop
         [SerializeField] private Text totalTransactionText;
 
         internal List<ShopItems> cartItems = new List<ShopItems>();
-        internal List<ShopItems> sellCartItems = new List<ShopItems>();
 
         internal int startBalance;
         internal int totalBuyCost = 0;
@@ -65,7 +64,7 @@ namespace Willis_Shop
             totalTransactionText.text = totalTransaction.ToString();
         }
 
-        public void ConfirmButton()
+        public void ConfirmBuyButton()
         {
             foreach (Transform child in cartScrollView)
             {
@@ -99,16 +98,5 @@ namespace Willis_Shop
                 playerInfoScript.inventoryItems.Add(cartItems[i]);
             }
         }
-
-        private void RemoveFromInventory()
-        {
-
-        }
-
-        private void AddToShop()
-        {
-
-        }
-
     }
 }

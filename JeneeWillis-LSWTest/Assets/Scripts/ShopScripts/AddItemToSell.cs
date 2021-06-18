@@ -37,7 +37,7 @@ namespace Willis_Shop
             shopManagerScript.totalSellCost -= sellManagerScript.sellItemsList[index].itemSellPrice;
             shopManagerScript.totalTransaction += sellManagerScript.sellItemsList[index].itemSellPrice;
 
-            shopManagerScript.sellCartItems.Add(shopManagerScript.shopItemsList[index]);
+            sellManagerScript.sellCartItems.Add(sellManagerScript.sellItemsList[index]);
 
             shopManagerScript.UpdateCosts();
 
