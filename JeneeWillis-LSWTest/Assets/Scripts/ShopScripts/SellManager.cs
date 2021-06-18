@@ -39,7 +39,7 @@ namespace Willis_Shop
             {
                 GameObject item = Instantiate(ItemButton, inventoryScrollbar);
 
-                item.transform.GetChild(0).GetComponent<Image>().sprite = playerInfoScript.inventoryItems[i].equipInformation[i].itemImage;
+                item.transform.GetChild(0).GetComponent<Image>().sprite = playerInfoScript.inventoryItems[i].equipInformation[0].itemImage;
                 item.transform.GetChild(1).GetComponent<Text>().text = playerInfoScript.inventoryItems[i].itemSellPrice.ToString();
                 sellItemsList.Add(playerInfoScript.inventoryItems[i]);
             }
@@ -76,7 +76,7 @@ namespace Willis_Shop
             {
                 for (int i = 0; i < sellCartItems.Count; i++)
                 {
-                    if (child.transform.GetChild(0).GetComponent<Image>().sprite == sellCartItems[i].equipInformation[i].itemImage)
+                    if (child.transform.GetChild(0).GetComponent<Image>().sprite == sellCartItems[i].equipInformation[0].itemImage)
                     {
                         Destroy(child.gameObject);
                     }
@@ -91,7 +91,7 @@ namespace Willis_Shop
                 {
                     for (int i = 0; i < sellCartItems.Count; i++)
                     {
-                        if (item.equipInformation[0].itemImage != sellCartItems[i].equipInformation[i].itemImage)
+                        if (item.equipInformation[0].itemImage != sellCartItems[i].equipInformation[0].itemImage)
                         {
                             newItems.Add(item);
                         }
@@ -107,7 +107,7 @@ namespace Willis_Shop
             {
                 for (int i = 0; i < sellCartItems.Count; i++)
                 {
-                    if (child.transform.GetChild(0).GetComponent<Image>().sprite == sellCartItems[i].equipInformation[i].itemImage)
+                    if (child.transform.GetChild(0).GetComponent<Image>().sprite == sellCartItems[i].equipInformation[0].itemImage)
                     {
                         child.gameObject.SetActive(true);
                     }
