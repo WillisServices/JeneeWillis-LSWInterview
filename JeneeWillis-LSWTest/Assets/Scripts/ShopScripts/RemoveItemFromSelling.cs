@@ -20,9 +20,9 @@ namespace Willis_Shop
 
         private void RemoveFromBuyCart()
         {
-            int index = sellCartItem.transform.GetSiblingIndex();
+            int index = sellCartItem.transform.GetSiblingIndex() - 1;
 
-            shopManagerScript.totalSellCost -= sellManagerScript.sellItemsList[index].itemSellPrice;
+            shopManagerScript.totalSellCost += sellManagerScript.sellItemsList[index].itemSellPrice;
             shopManagerScript.totalTransaction -= sellManagerScript.sellItemsList[index].itemSellPrice;
             shopManagerScript.UpdateCosts();
 
