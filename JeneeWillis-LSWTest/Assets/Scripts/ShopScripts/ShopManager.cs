@@ -7,6 +7,11 @@ using Willis_Inventory; //added
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: ShopManager
+    /// Author: Jenee Willis
+    /// Description: Manages store and what it sells
+    /// </summary>
     public class ShopManager : MonoBehaviour
     {
         [SerializeField] PlayerInformation playerInfoScript;

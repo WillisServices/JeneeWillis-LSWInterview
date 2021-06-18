@@ -6,6 +6,11 @@ using Willis_Player; //added
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: AddItemToSell
+    /// Author: Jenee Willis
+    /// Description: Add item to sell area so player can confirm that they want to see item before doing so
+    /// </summary>
     public class AddItemToSell : MonoBehaviour
     {
         [SerializeField] ShopManager shopManagerScript;

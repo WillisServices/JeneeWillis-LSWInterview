@@ -6,6 +6,11 @@ using Willis_Player; //added
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: SellManager
+    /// Author: Jenee Willis
+    /// Description: Controls what player sells in their inventory
+    /// </summary>
     public class SellManager : MonoBehaviour
     {
         [SerializeField] PlayerInformation playerInfoScript;

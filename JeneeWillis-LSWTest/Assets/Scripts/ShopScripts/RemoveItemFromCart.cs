@@ -5,6 +5,11 @@ using UnityEngine.UI; //added
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: RemoveItemFromCart
+    /// Author: Jenee Willis
+    /// Description: Remove item from cart so that player does not buy it when they confirm
+    /// </summary>
     public class RemoveItemFromCart : MonoBehaviour
     {
         [SerializeField] private Button clickedButton;

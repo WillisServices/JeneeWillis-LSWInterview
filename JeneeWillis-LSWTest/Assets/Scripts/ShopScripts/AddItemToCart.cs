@@ -6,6 +6,11 @@ using Willis_Player; //added
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: AddItemToCart
+    /// Author: Jenee Willis
+    /// Description: Add items into shopping cart so player can make sure they want the item before buying
+    /// </summary>
     public class AddItemToCart : MonoBehaviour
     {
         [SerializeField] ShopManager shopManagerScript;

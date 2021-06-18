@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: ShopItems
+    /// Author: Jenee Willis
+    /// Description: Holds information about each item in store
+    /// </summary>
     [System.Serializable]
     internal class ShopItems
     {

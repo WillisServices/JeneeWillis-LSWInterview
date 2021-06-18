@@ -5,6 +5,11 @@ using UnityEngine.UI; //added
 
 namespace Willis_Shop
 {
+    /// <summary>
+    /// CLASS: RemoveItemFromSelling
+    /// Author: Jenee Willis
+    /// Description: Put item back in inventory so it does not sell when player confirms
+    /// </summary>
     public class RemoveItemFromSelling : MonoBehaviour
     {
         [SerializeField] private Button clickedButton;

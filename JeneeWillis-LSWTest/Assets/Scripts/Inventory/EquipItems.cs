@@ -6,10 +6,14 @@ using Willis_Player;
 
 namespace Willis_Inventory
 {
+    /// <summary>
+    /// CLASS: EquipItems
+    /// Author: Jenee Willis
+    /// Description: Equip items to play and show it in game
+    /// </summary>
     public class EquipItems : MonoBehaviour
     {
         [SerializeField] internal List<EquipInformation> equipInformation = new List<EquipInformation>();
-        internal PlayerInformation playerInfoScript;
 
         public void EquipItem()
         {

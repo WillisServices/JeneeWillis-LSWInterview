@@ -6,6 +6,11 @@ using Willis_Shop; //added
 
 namespace Willis_Player
 {
+    /// <summary>
+    /// CLASS: PlayeInformation
+    /// Author: Jenee Willis
+    /// Description: Holds basic statitics and information about player
+    /// </summary>
     public class PlayerInformation : MonoBehaviour
     {
         [Header("General Information")]

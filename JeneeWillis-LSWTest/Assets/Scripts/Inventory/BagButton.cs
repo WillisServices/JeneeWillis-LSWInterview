@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Willis_Inventory
 {
+    /// <summary>
+    /// CLASS: BagButton
+    /// Author: Jenee Willis
+    /// Description: Shows and hides inventory
+    /// </summary>
     public class BagButton : MonoBehaviour
     {
         [SerializeField] internal GameObject inventoryPanel;
